@@ -1,0 +1,20 @@
+name: Semgrep Scan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  semgrep:
+    name: Run Semgrep
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Semgrep with Prebuilt Rules
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: p/default  # Or use a custom path
