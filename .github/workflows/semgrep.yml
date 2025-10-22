@@ -21,11 +21,11 @@ jobs:
 
       - name: Run Semgrep and save results
         run: |
-          semgrep --config=p/default --json --output=semgrep-results.json .
+          semgrep --config=p/default --sarif --output=semgrep-results.sarif .
         continue-on-error: true  # <-- This prevents the job from failing if findings are found
 
       - name: Upload Semgrep results as artifact
         uses: actions/upload-artifact@v4
         with:
           name: semgrep-results
-          path: semgrep-results.json
+          path: semgrep-results.sarif
